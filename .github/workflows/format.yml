@@ -27,6 +27,8 @@ jobs:
           dart format -o show . > changes.text
           echo "Current working directory"
           pwd
+          ls -la analysis_options.yaml 2>/dev/null || echo "No analysis in project"
+          which dart
           echo "Flutter sdk path: $FLUTTER_HOME"
           dart format --version
           dart format --set-exit-if-changed .
