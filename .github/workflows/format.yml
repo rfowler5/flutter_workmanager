@@ -28,7 +28,6 @@ jobs:
           echo "Current working directory"
           pwd
           echo "Flutter sdk path: $FLUTTER_HOME"
-          find "$FLUTTER_HOME" -name "analysis_options.yaml" -o -name ".dartanalyzer"
           dart format --version
           dart format --set-exit-if-changed .
 
