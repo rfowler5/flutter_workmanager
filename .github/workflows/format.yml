@@ -2,7 +2,7 @@ name: format + publishable
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test ]
   pull_request:
     branches: [ main ]
 
@@ -16,6 +16,20 @@ jobs:
           channel: 'stable'
       - name: Format
         run: |
+          if [ -f "analysis_options.yaml" ]; then
+            echo "Project analysis_options.yaml:"
+            cat analysis_options.yaml
+          fi
+          if [ -f "$FLUTTER_HOME/analysis_options.yaml" ]; then
+            echo "Flutter SDK analysis_options.yaml:"
+          fi
+          find /home/runner -maxdepth 3 -name "analysis_options.yaml" -exec echo "Found: {}" \; -exec cat {} \;
+          dart format -o show . > changes.text
+          echo "Look again"
+          pwd
+          find . -name "analysis_options.yaml" -o -name ".dartanalyzer"
+          find "$FLUTTER_HOME" -name "analysis_options.yaml" -o -name ".dartanalyzer"
+          dart format --version
           dart format --set-exit-if-changed .
 
   format_kotlin:
