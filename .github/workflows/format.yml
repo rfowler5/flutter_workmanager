@@ -23,7 +23,7 @@ jobs:
           if [ -f "$FLUTTER_HOME/analysis_options.yaml" ]; then
             echo "Flutter SDK analysis_options.yaml:"
           fi
-          find /home/runner -maxdepth 3 -name "analysis_options.yaml" -exec echo "Found: {}" \; -exec cat {} \;
+
           dart format -o show . > changes.text
           echo "Current working directory"
           pwd
