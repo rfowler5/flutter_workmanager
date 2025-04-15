@@ -25,8 +25,10 @@ jobs:
           fi
           find /home/runner -maxdepth 3 -name "analysis_options.yaml" -exec echo "Found: {}" \; -exec cat {} \;
           dart format -o show . > changes.text
-          echo "Look again"
+          echo "Current working directory"
           pwd
+          echo "Flutter sdk path: $FLUTTER_HOME"
+          echo "Searching in project and parent directories"
           find . -name "analysis_options.yaml" -o -name ".dartanalyzer"
           find "$FLUTTER_HOME" -name "analysis_options.yaml" -o -name ".dartanalyzer"
           dart format --version
